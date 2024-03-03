@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:replace="admin/header :: header"></div>
+
+
+<body style="background: linear-gradient(to left, #c6ea8d 0%, #fe90af 94%);">
+
+	<div th:replace="admin/header :: navbar"></div>
+
+	<br />
+	<br />
+	<br />
+
+
+	<div class="container">
+
+		<div class="row col-md-8 offset-md-2 ">
+
+			<div style="background-color: deeppink;" class="card">
+				<div class="card-header">
+					<h2 class="text-center" style="background-color: aqua;">Create Ticket</h2>
+
+				</div>
+				<div class="card-body">
+
+					<form role="form" method="post" th:action="@{/admin/tickets}"
+						th:object="${ticket}">
+
+						<div class="mb-3">
+							<label class="form-label">Title</label> <input type="text"
+								class="form-control" id="title" placeholder="Enter ticket title"
+								name="title" th:field="*{title}" />
+							<p th:if="${#fields.hasErrors('title')}" class="text-danger"
+								th:errors="*{title}"></p>
+						</div>
+
+
+						<div class="mb-3">
+							<label class="form-label"> Description </label>
+							<textarea class="form-control" id="shortDescription"
+								placeholder="Enter ticket description" rows="3"
+								name="shortDescription" th:field="*{shortDescription}">     
+							 </textarea>
+							<p th:if="${#fields.hasErrors('shortDescription')}"
+								class="text-danger" th:errors="*{shortDescription}"></p>
+
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label"> Content </label>
+							<textarea class="form-control" id="content"
+								placeholder="Enter content" rows="3" name="content"
+								th:field="*{content}">   
+							 </textarea>
+							<p th:if="${#fields.hasErrors('content')}" class="text-danger"
+								th:errors="*{content}"></p>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+
+					</form>
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+	<script>
+                        ClassicEditor
+                                .create( document.querySelector( '#content' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script>
+</body>
+</html>
